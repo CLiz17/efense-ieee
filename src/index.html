@@ -85,9 +85,69 @@
 <!--------------------------countdown-------------------------------->
 <section class="bg-white dark:bg-gray-900">
   <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-
+    <h1 class="text-center text-5xl font-extrabold dark:text-white">Countdown<br>
+      <small class="ml-2 font-semibold text-gray-500 dark:text-gray-400">The event starts in the next  </small>
+    </h1>
+    <div id="countdown">
+      <div id="days"></div>
+      <div id="hours"></div>
+      <div id="minutes"></div>
+      <div id="seconds"></div>
+    </div>
   </div>
 </section>
+
+
+<style>
+#countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  font-size: 48px;
+  font-weight: bold;
+  color: #333;
+}
+
+#countdown div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px;
+}
+
+#countdown div span {
+  font-size: 16px;
+  font-weight: normal;
+  margin-top: 5px;
+}
+</style>
+
+<script>
+const countdown = document.querySelector('#countdown');
+const daysEl = document.querySelector('#days');
+const hoursEl = document.querySelector('#hours');
+const minutesEl = document.querySelector('#minutes');
+const secondsEl = document.querySelector('#seconds');
+
+const targetDate = new Date("March 4, 2023 12:00:00").getTime();
+
+setInterval(() => {
+  const currentDate = new Date().getTime();
+  const distance = targetDate - currentDate;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  daysEl.innerHTML = `<div>${days}<span>Days</span></div>`;
+  hoursEl.innerHTML = `<div>${hours}<span>Hours</span></div>`;
+  minutesEl.innerHTML = `<div>${minutes}<span>Minutes</span></div>`;
+  secondsEl.innerHTML = `<div>${seconds}<span>Seconds</span></div>`;
+
+}, 1000);
+</script>
 
 <!-------------------------------workshop----------------------------------->
 <section class="bg-white dark:bg-gray-900">
